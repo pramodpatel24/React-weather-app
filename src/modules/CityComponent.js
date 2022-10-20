@@ -35,25 +35,21 @@ const ChooseCityLabel = styled.span`
   font-size: 18px;
   font-weight: bold;
 `;
-const WelcomeWeatherLogo = styled.img`
-  width: 140px;
-  height: 140px;
-  margin: 40px auto;
-`;
+
 const CityComponent = (props) => {
-    const { updateCity, fetchWeather } = props;
-    return (
-        <>
-            <WelcomeWeatherLogo src={"../icons/perfect-da.svg"} />
-            <ChooseCityLabel>Find Weather of your city</ChooseCityLabel>
-            <SearchBox onSubmit={fetchWeather}>
-                <input
-                    onChange={(e) => updateCity(e.target.value)}
-                    placeholder="City"
-                />
-                <button type={"submit"}>Search</button>
-            </SearchBox>
-        </>
-    );
+  const { updateCity, fetchWeather } = props;
+  return (
+    <>
+      <img style={{ width: 140, height: 140, margin: 40 }} src="https://img.freepik.com/premium-vector/outline-weather-icon-set-transparent-forecast-icons-outline-weather-pictogram-collection-cloud-sun-rain-wind-symbol_570901-29.jpg?w=2000" alt="" />
+      <ChooseCityLabel>Find Weather of your city</ChooseCityLabel>
+      <SearchBox onSubmit={fetchWeather}>
+        <input
+          onChange={(e) => updateCity(e.target.value)}
+          placeholder="City"
+        />
+        <button type={"submit"}>Search</button>
+      </SearchBox>
+    </>
+  );
 };
 export default CityComponent;

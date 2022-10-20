@@ -1,14 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { WeatherIcons } from "../App";
-
-export const WeatherInfoIcons = {
-    sunset: "/react-weather-app/icons/temp.svg",
-    sunrise: "/react-weather-app/icons/temp.svg",
-    humidity: "/react-weather-app/icons/humidity.svg",
-    wind: "/react-weather-app/icons/wind.svg",
-    pressure: "/react-weather-app/icons/pressure.svg",
-};
 const Location = styled.span`
   margin: 15px auto;
   text-transform: capitalize;
@@ -76,40 +67,43 @@ const InfoLabel = styled.span`
 `;
 
 const WeatherInfoComponent = (props) => {
-    const { name, value } = props;
-    return (
-        <InfoContainer>
-            <InfoIcon src={WeatherInfoIcons[name]} />
-            <InfoLabel>
-                {value}
-                <span>{name}</span>
-            </InfoLabel>
-        </InfoContainer>
-    );
+  const { name, value } = props;
+  return (
+    <InfoContainer>
+      <InfoLabel>
+        {value}
+        <span>{name}</span>
+      </InfoLabel>
+    </InfoContainer>
+  );
 };
 const WeatherComponent = (props) => {
-    const { current } = props;
-    return (
-        <>
-            <WeatherContainer>
-                <Condition>
-                    <span>{`${Math.floor(current.current.temperature)}°C`}</span>
-                    {`  |  ${current.current.weather_descriptions}`}
-                </Condition>
-                <WeatherIcon src={current?.current.weather_icons[0]
-                } />
-            </WeatherContainer>
-            <Location>{`${current.location.name}, ${current?.location?.country}`}</Location>
+  const { current } = props;
+  return (
+    <>
+      <WeatherContainer>
+        <Condition>
+          <span>{`${Math.floor(current.current.temperature)}°C`}</span>
+          {`  |  ${current.current.weather_descriptions}`}
+        </Condition>
+        <WeatherIcon src={current?.current.weather_icons[0]
+        } />
+      </WeatherContainer>
+      <Location>{`${current.location.name}, ${current?.location?.country}`}</Location>
 
-            <WeatherInfoLabel>Weather Info</WeatherInfoLabel>
-            <WeatherInfoContainer>
-                <WeatherInfoComponent name={"Visibility"} value={current?.current?.visibility} />
-                <WeatherInfoComponent name={"humidity"} value={current?.current?.humidity} />
-                <WeatherInfoComponent name={"wind"} value={current?.current?.wind_speed} />
-                <WeatherInfoComponent name={"pressure"} value={current?.current?.pressure} />
-            </WeatherInfoContainer>
-        </>
-    );
+      <WeatherInfoLabel>Weather Info</WeatherInfoLabel>
+      <WeatherInfoContainer>
+        <img style={{ width: 50, height: 50 }} src="https://cdn4.iconfinder.com/data/icons/cloud-based-weather-forecasts/512/weather01-fog-512.png" alt="" />
+        <WeatherInfoComponent name={"Visibility"} value={current?.current?.visibility} />
+        <img style={{ width: 50, height: 50 }} src="https://icon-library.com/images/humidity-icon/humidity-icon-9.jpg" alt="" />
+        <WeatherInfoComponent name={"humidity"} value={current?.current?.humidity} />
+        <img style={{ width: 50, height: 50 }} src="https://w7.pngwing.com/pngs/652/594/png-transparent-computer-icons-weather-wind-climate-weather.png" alt="" />
+        <WeatherInfoComponent name={"wind"} value={current?.current?.wind_speed} />
+        <img style={{ width: 50, height: 50 }} src="https://image.shutterstock.com/shutterstock/photos/1656068398/display_1500/stock-vector--air-pressure-icon-elements-of-weather-icon-set-premium-line-icon-for-web-design-and-app-1656068398.jpg" alt="" />
+        <WeatherInfoComponent name={"pressure"} value={current?.current?.pressure} />
+      </WeatherInfoContainer>
+    </>
+  );
 };
 
 export default WeatherComponent;
